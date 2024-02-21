@@ -1,0 +1,547 @@
+.sign-up-wrapper {
+    min-height: calc(100vh - 35px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+    flex-direction: row-reverse;
+    width: 70%;
+  }
+  
+  .sign-up-info {
+    position: absolute;
+    width: 47%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 35px;
+    backdrop-filter: blur(19.4px);
+    height: 100%;
+  }
+  
+  .st-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    width: 50px;
+    height: auto;
+    padding: 5px;
+    transition: all .2s ease-in-out;
+    margin: 10px;
+    transition: all .2s ease-in-out;
+  }
+  
+  .st-logo:hover {
+    opacity: .9;
+    transition: all .2s ease-in-out;
+  }
+  
+  .st-logo img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .sign-up-info-text {
+    position: relative;
+  }
+  
+  .sign-up-info-text,
+  .sign-up-info-title {
+    width: 75%;
+    margin-left: 30%;
+  }
+  
+  .sign-up-info-text::after {
+    position: absolute;
+    content: "";
+    width: 75px;
+    height: 75px;
+    z-index: 0;
+    top: 135%;
+    right: 15%;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(19.4px);
+    -webkit-backdrop-filter: blur(19.4px);
+    animation: rotate 19s ease-in-out infinite; 
+  }
+  
+  .sign-up-info-title {
+    margin-bottom: 25px;
+    font-size: 35px;
+    color: #fff;
+    opacity: .5;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.4),
+                0 -1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .sign-up-info-text {
+    color: #fff;
+    font-size: 19px;
+    opacity: .9;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.4), 0 -1px 3px rgba(0, 0, 0, 0.3);
+    line-height: 1.75;
+  }
+  
+  .sign-up-section {
+    position: relative;
+  }
+  
+  .dont-have-an-account {
+    color: #fff;
+    text-align: center;
+  }
+  
+  .sign-up-section,
+  .login-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #fb9c99;
+    background-image: url("../../../images/login-signup/login-signup-background-image.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 99999;
+  }
+  
+  .login-section {
+    flex-direction: column;
+  }
+  
+  .login-section .auth-form {
+    width: 35%;
+  }
+  
+  .sign-up-input-error:focus-visible,
+  .sign-up-input-error {
+    outline: none;
+    border: 1px solid hsl(357, 78%, 55%) !important;
+  }
+  
+  .sign-up-valid-input:focus-visible,
+  .sign-up-valid-input {
+    outline: none;
+    border: 1px solid hsl(40.21deg 96.04% 85.2%) !important;
+  }
+  
+  .pass-label-block {
+    display: flex;
+  }
+  
+  .auth-form input::placeholder {
+    color: #fff;
+  }
+  
+  .password-block {
+    position: relative;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .password-eye {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    color: #fff;
+    right: 5px;
+    transform: translateY(-50%) translateX(-100%);
+  }
+  
+  .password-block input:focus-visible,
+  .password-block input {
+    border: 2px solid #f73f61;
+    outline: none;
+  }
+  
+  .password-block input:focus-visible,
+  .auth-form input {
+    outline: none;
+    padding: 5px;
+    border: 0px solid transparent;
+  }
+  
+  .auth-form input label:focus {
+    transform: translateY(30%);
+  }
+  
+  .password-block input {
+    padding: 5px;
+  }
+  
+  .auth-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(19.4px);
+    -webkit-backdrop-filter: blur(19.4px);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .sign-up-block {
+    position: relative;
+    width: 50%;
+  }
+  
+  .sign-up-block::before {
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 100px;
+    z-index: 0;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(19.4px);
+    -webkit-backdrop-filter: blur(19.4px);
+    animation: rotate 19s ease-in-out infinite; 
+  }
+  
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .sign-up-block::before {
+    top: -50px;
+    right: -50px;
+    z-index: 1;
+  }
+  
+  .auth-form label {
+    min-width: 100px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  
+  .auth-form div:not(.error) {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    width: 100%;
+  }
+  
+  .auth-form input {
+    width: 100%;
+  }
+  
+  .auth-form input[name="password"] {
+    border: none;
+    padding: 10px;
+    padding-left: 20px;
+    height: 50px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(12.3px);
+    border-radius: 10px;
+    color: #fff;
+  }
+  
+  .pass-label-block,
+  .auth-form input:not([name="password"]) {
+    margin-bottom: 20px;
+  }
+  
+  .auth-form input[name="username"],
+  .auth-form input[name="email"] {
+    padding: 10px;
+    padding-left: 20px;
+    height: 50px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12.3px);
+    -webkit-backdrop-filter: blur(12.3px);
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .auth-form input:not([type="submit"]):focus-visible{
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .auth-form input[type="submit"]:focus {
+    outline: none;
+    border: none;
+  }
+  
+  .auth-form input[type="submit"] {
+    width: 100%;
+    color: #fff;
+    font-size: 21px;
+    text-align: center;
+    padding: 20px;
+    background: hsla(0,0%,100%,.37);
+    border: 2px solid hsla(0,0%,100%,.1);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color .15s ease;
+    font-weight: 400;
+    font-family: "Inter",sans-serif;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .auth-form input[type="submit"]:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .auth-title {
+    font-size: 39px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .errors {
+    width: 50%;
+    color: #f73f61;
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-29%);
+    top: 103%;
+  }
+  
+  .user-is-not-exists {
+    font-size: 25px;
+    margin: 10px 0 10px 0;
+    color: #f73f61;
+    display: flex;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .not-exists-icon {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .error {
+    color: #f73f61;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+  }
+  
+  .error-text {
+    margin-left: 10px;
+    width: 100%;
+  }
+  
+  .error-icon {
+    color: #f73f61;
+    margin-bottom: 10px;
+  }
+  
+  .wrapper-block {
+    width: 50%;
+  }
+  
+  .sign-up-errors {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: inherit;
+    margin-right: 21px;
+  }
+  
+  .password-errors {
+    display: flex;
+  }
+  
+  .error i {
+    display: flex;
+    align-items: center;
+  }
+  
+  .username-errors,
+  .email-errors,
+  .password-errors {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgb(255 255 255 / 55%);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(19.4px);
+    position: relative;
+  }
+  
+  .username-errors::after,
+  .email-errors::after,
+  .password-errors::after {
+    position: absolute;
+    right: -20px;
+    content: "";
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 20px solid rgb(255 255 255 / 50%);
+    border-bottom: 10px solid transparent;
+  }
+  
+  .errors-small {
+    display: none !important;
+  }
+  
+  .have-an-account {
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .have-an-account,
+  .dont-have-an-account {
+    transition: all .2s ease-in-out;
+  }
+  
+  .have-an-account i,
+  .dont-have-an-account i {
+    opacity: .7;
+  }
+  
+  .have-an-account a:hover,
+  .dont-have-an-account a:hover {
+    color: #ffffffb2;
+    transition: all .2s ease-in-out;
+  }
+  
+  .user-is-not-exists {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row !important;
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    .sign-up-info-title {
+      font-size: 29px;
+    }
+  
+    .sign-up-info-text { 
+      font-size: 16px;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 1024px) {
+    .wrapper-block {
+      display: none;
+    }
+  
+    .sign-up-info {
+      display: none;
+    }
+  
+    .sign-up-block {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .sign-up-errors {
+      display: none;
+    }
+  
+    .errors-small {
+      display: block !important;
+    }
+  
+    .username-errors::after, 
+    .email-errors::after, 
+    .password-errors::after {
+      display: none !important;
+    }
+  
+    .username-errors, 
+    .email-errors, 
+    .password-errors {
+      margin-bottom: 20px;
+    }
+  
+    .auth-form {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.3);
+    }
+  
+    .login-section .auth-form {
+      width: 69%;
+    }
+  
+    .sign-up-wrapper {
+      margin-top: 30px;
+    }
+  
+    .login-section .auth-form {
+      width: 59%;
+    }
+  }
+  
+  @media only screen and (max-width: 786px) {
+    .login-section .auth-form {
+      width: 75%;
+    }
+  
+    .sign-up-wrapper {
+      width: 90%;
+    }
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .login-section .auth-form {
+      width: 90%;
+    }
+  
+    .user-is-not-exists {
+      font-size: 21px;
+    }
+  
+    .auth-form div {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
+  
+    .auth-form label {
+      margin-bottom: 10px;
+    }
+  
+    .error i {
+      display: flex;
+      align-items: flex-start;
+    }
+    .error-text {
+      font-size: 16px;
+    }
+  }
+  

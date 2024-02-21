@@ -1,0 +1,298 @@
+.wrapper {
+  width: fit-content;
+}
+
+.containerList {
+  display: flex;
+  /* backdrop-filter: blur(6px); */
+  padding: 10px;
+  background: #363a3e74;
+  box-shadow: 2px 2px 2px #242424b3, -2px -2px 6px #b5b5b5;
+  align-items: self-start;
+  padding-top: 140px;
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.containerList.--content {
+  width: fit-content;
+  min-height: calc(100vh - 17px);
+}
+
+.list {
+  background-color: #fff;
+  /* backdrop-filter: blur(10px); */
+  border-radius: 20px;
+  margin: 15px;
+  padding: 17px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: flex-start;
+}
+
+.to-do-lists {
+  display: flex;
+}
+
+.list > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 25px;
+  padding: 0 8px 0 8px;
+  /* gap: 15px; */
+}
+
+.list h3 {
+  margin: 0;
+}
+
+.list button {
+  /* background: linear-gradient(
+    141deg,
+    rgba(255, 154, 0, 1) 0%,
+    rgba(205, 0, 255, 1) 100%
+  ); */
+  border: none;
+  background-color: #fff;
+  border-radius: 0.5em;
+  color: #000;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-left: 5px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.list button:hover {
+  background-color: #ffffff73;
+  transition: all 0.2s ease-in-out;
+}
+
+.list input {
+  border-radius: 0.5em;
+  outline: none;
+  padding: 5px;
+  border: 1px solid transparent;
+}
+
+.list input:focus-visible {
+  outline: none !important;
+  border: none !important;
+}
+
+.add-card input {
+  border: 1px solid transparent;
+}
+
+.add-card input:focus-visible {
+  border: 1px solid #222 !important;
+}
+
+/* .list input:focus {
+  outline: none;
+  box-shadow: inset 4px 4px 4px #cbced1, inset -4px -4px 4px white !important;
+  transition: all 0.3s ease-in-out;
+} */
+
+.list.active {
+  background-color: #cfe2e0d4;
+}
+
+.add-list {
+  background: #fff;
+  border: none;
+  border-radius: 0.5em;
+  color: #000;
+  cursor: pointer;
+  padding: 5px 10px;
+  position: fixed;
+  height: 2rem;
+  top: 41%;
+  left: 3%;
+  transform: translate(-50%, -50%);
+}
+
+li {
+  display: flex;
+}
+
+.list-title-X h3 {
+  max-width: calc(100% - 17px);
+  overflow: hidden;
+}
+
+.add-list-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 66px;
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%);
+  background-color: #fff;
+  /* backdrop-filter: blur(10px); */
+  border-radius: 20px;
+  margin: 15px 0;
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.add-list-form input {
+  margin-bottom: 10px;
+  padding: 5px;
+  margin: 2px;
+  border-radius: 0.5em;
+  background-color: #ffffff8c;
+  border-radius: 0.5em;
+  padding: 8px;
+  width: 227px;
+  display: flex;
+  align-items: center;
+  border: none;
+  border: 1px solid transparent;
+  margin-right: 10px;
+}
+
+.add-list-form input:focus-visible {
+  border: 1px solid #222 !important;
+  outline: none !important;
+}
+
+.add-card {
+  padding: 0 !important;
+}
+
+.add-list-form button {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 0.5em;
+  color: #000;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: -4px;
+}
+
+/* .add-list-form button:hover {
+  background-color: #7a39ae;
+} */
+
+.add-list button {
+  width: 200px !important;
+}
+
+.add-list {
+  top: 80px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.5em;
+  margin-bottom: 8px;
+  padding: 8px;
+  width: 227px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.card-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-content {
+  flex: 1;
+  padding-right: 1px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 7px;
+}
+
+.card li .delete-card {
+  margin-top: 4px;
+}
+
+.delete-card button {
+  /* background-color: #56297a; */
+  border: none;
+  border-radius: 0.5em;
+  color: #000;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-left: -9px;
+}
+
+.card-buttons {
+  display: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover > .card-buttons {
+  display: flex;
+  transition: all 0.2s ease-in-out;
+}
+
+.delete-card button:hover {
+  box-shadow: -2px 2px 2px #c5c5c5, -2px -2px 6px #ffffff;
+  background-color: #fff;
+}
+
+.containerClass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  width: 100%;
+  height: 100vh;
+}
+
+/* .delete-card button:hover {
+  background-color: #7a39ae;
+} */
+
+.containerClass-text {
+  margin-bottom: 175px;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+  margin: 0 0 365px 0;
+  padding: 49px;
+
+  border-radius: 0.5em;
+  box-shadow: -3px 4px 8px rgb(0 0 0 / 10%);
+  text-shadow: 1px 1px 2px black;
+  backdrop-filter: blur(3px);
+}
+
+.add-card {
+  display: flex;
+}

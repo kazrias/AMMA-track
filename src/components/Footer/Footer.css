@@ -1,0 +1,18 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  background: #f5f5f5;
+  box-shadow: 0px 1px 4px rgb(86, 86, 86);
+  width: 100%;
+}
+
+.footer-wrapper {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  justify-content: center;
+  gap: 10px;
+}
+.footer-wrapper p{
+  cursor: pointer;
+}

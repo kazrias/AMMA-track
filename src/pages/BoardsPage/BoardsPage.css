@@ -1,0 +1,6 @@
+.container.container--boardsPage {
+  max-width: 1300px;
+  margin-top: 8rem;
+  display: flex;
+  gap: 40px;
+}

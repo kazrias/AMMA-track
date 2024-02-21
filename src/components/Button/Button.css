@@ -1,0 +1,53 @@
+.button {
+  /* border-radius: 5px;
+  padding: 5px 10px;
+  transition: all .3s;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #cacaca, #f0f0f0);
+  box-shadow: 20px -20px 50px #bebebe,
+    -20px 20px 50px #ffffff;
+  border: none;
+  font-size: 14px; */
+  color: #ffffff;
+  padding: 0.3em 1.0em;
+  font-size: 16px;
+  border-radius: 0.5em;
+  background: #000000;
+  cursor: pointer;
+  /* border: 1px solid #e8e8e8; */
+  border: none;
+  transition: all 0.3s;
+  box-shadow: -6px 6px 6px #c5c5c5, -6px -6px 12px #ffffff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.button.main {
+  background-color: #fff;
+  color: #000;
+}
+
+.button.secondary {
+  background-color: #5d2d85;
+  color: #ffffff;
+}
+
+.button:hover {
+  opacity: .75;
+}
+
+.button.account-btn {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.button:disabled,
+.button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}

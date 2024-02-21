@@ -1,0 +1,136 @@
+.create-box {
+  position: absolute;
+  padding: 15px 15px 25px 15px;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: fit-content;
+  display: block;
+  animation: opacity .5s forwards;
+  opacity: 0;
+  z-index: 100;
+  /* width: 320px; */
+}
+
+.create-box.workspace {
+  top: 10px;
+  left: 90%;
+}
+
+.create-box.board {
+  top: -100%;
+  left: 103%;
+}
+
+.create-box__type {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.create-box__btn {
+  display: flex;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.create-box__images {
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 80px);
+  gap: 5px;
+}
+
+.create-box__images-wrapper {
+  display: block;
+  border-radius: 10px;
+  border: none;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.create-box__images-wrapper.active::before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url('../../images/check-mark-svgrepo-com\ \(1\).svg');
+  width: 60px;
+  height: 60px;
+  z-index: 10;
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  background-position: center;
+  background-size: cover;
+  opacity: 1;
+  border-radius: 50%;
+}
+
+.create-box__images-wrapper.active::after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  z-index: 9;
+  box-shadow: inset 0 0 25px 5px white, 0 0 5px 0px white;
+}
+
+.create-box__images-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background-color: rgb(212, 212, 212);
+}
+
+.create-box__title {
+  margin-top: 10px;
+}
+
+.create-box__title span {
+  text-transform: capitalize;
+}
+
+.create-box__info label {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.create-box__info input {
+  height: 20px;
+  padding: 15px 5px;
+  display: block;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+
+.create-box__images-wrapper.active {
+  opacity: 1;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

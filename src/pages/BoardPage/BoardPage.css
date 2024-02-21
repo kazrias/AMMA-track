@@ -1,0 +1,9 @@
+.board-list-conteyner {
+  /* padding-top: 150px; */
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: rgba(0, 255, 255, 0.484); */
+  backdrop-filter: blur(10px);
+}
