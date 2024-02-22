@@ -7,15 +7,15 @@ const validateUserName = (userName) => {
     const alphabetRegex  = /^[a-zA-Z]+$/;
     const validUserNameregex = /^[a-zA-Z_-]+$/;
     if (userName.length < 2) {
-        return "User namet must be at least 2 characters";
+        return "Username must be at least 2 characters";
     }
 
     if (!alphabetRegex.test(userName[0])) {
-        return "User name must start with letter.";
+        return "Username must start with letter.";
     }
 
     if (!validUserNameregex.test(userName)) {
-        return "User Name can contain only albhabet letters, underscores (_), and hyphens (-)";
+        return "Username can contain only alphabet letters, underscores (_), and hyphens (-)";
     }
 
     return "Success";
@@ -41,7 +41,7 @@ const validatePassword = (password) => {
     }
 
     if (!(/[@#$%^&*]/.test(password))) {
-        passwordErrorLists["specificError"] = "Password must contain specific symbol (e.g., @, #, $, etc.)";
+        passwordErrorLists["specificError"] = "Password must contain (@, #, $, etc.)";
     }
 
     return passwordErrorLists;

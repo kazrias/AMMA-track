@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { signUp } from "../../redux/slices/authenticationSlice";
 import CryptoJS from 'crypto-js';
 import { db } from "../../config/firebaseConfig";
-import logo from "../../images/amma-truck-logo.png"
+
 import "./style/style.css"
 
 export default function SignUp() {
@@ -24,21 +24,21 @@ export default function SignUp() {
     const usersCollection = collection(db, 'users');
     let userExistsBool = true;
     const loggedIn = window.localStorage.getItem("isLoggedIn");
-    
+
     useEffect(() => {
         if (loggedIn && loggedIn === "ON") {
-          navigate("/workspaces");
+            navigate("/workspaces");
         }
     }, [loggedIn, navigate]);
 
     useEffect(() => {
         const fetchusers = async () => {
-          const snapshot = await getDocs(usersCollection)
-          snapshot.docs.map((doc) => (dispatch(signUp({ ...doc.data() }))))
+            const snapshot = await getDocs(usersCollection)
+            snapshot.docs.map((doc) => (dispatch(signUp({ ...doc.data() }))))
         }
-    
+
         if (!users.length) fetchusers()
-        
+
     }, [users.length, usersCollection, dispatch])
 
     useEffect(() => {
@@ -70,7 +70,7 @@ export default function SignUp() {
             setErrors((prevErrors) => { return { ...prevErrors, "password": "" } });
             setErrorClasses((prevErrorClasses) => { return { ...prevErrorClasses, passwordError: "sign-up-valid-input" } });
         }
-        
+
     }, [userName, email, password]);
 
     const hashPassword = (password) => {
@@ -85,7 +85,7 @@ export default function SignUp() {
 
         if (users && usersCount) {
             let lastUserId = users[usersCount - 1]["id"];
-            id = lastUserId ? ++lastUserId: id;
+            id = lastUserId ? ++lastUserId : id;
         }
 
         if (!Object.values(errors).join("")) {
@@ -145,34 +145,30 @@ export default function SignUp() {
 
     return (
         <>
-            <div className="st-logo">
-                <a href="/" className="st-logo">
-                    <img src={logo} alt="AMMA-Track" />
-                </a>
-            </div>
+
             <div className="sign-up-section" onClick={closeErrorsBlock}>
                 <div className="sign-up-wrapper">
                     <div className="sign-up-block" onClick={(e) => e.stopPropagation()}>
+                        <h2 className="auth-title">Sign Up</h2>
                         <form onSubmit={handleSignUpFormOnsubmit} autoComplete="off" className="auth-form">
-                            <h2 className="auth-title">Sign Up</h2>
                             {
-                                userExists && <div className="user-is-not-exists"><i className="fa-solid fa-ban not-exists-icon"></i> User is already exists</div>
+                                userExists && <div className="user-is-not-exists">User is already exists</div>
                             }
                             <div className="username">
                                 <label htmlFor="username" >User Name</label>
-                                <input type="text" name="username" id="username" placeholder="User Name" className={userName && errorClsses.userNameError} value={userName} onChange={handleInputChange} onClick={openErrorsBlock}/>
+                                <input type="text" name="username" id="username" placeholder="User Name" className={userName && errorClsses.userNameError} value={userName} onChange={handleInputChange} onClick={openErrorsBlock} />
                                 <div className="errors-small">
                                     {
-                                        errors?.username && <div className="username-errors error"><i className="fa-solid fa-circle-exclamation"></i> <p className="error-text">{errors?.username}</p></div>
+                                        errors?.username && <div className="username-errors error"><p className="error-text">{errors?.username}</p></div>
                                     }
                                 </div>
                             </div>
                             <div className="email">
                                 <label htmlFor="email" >Email</label>
-                                <input type="text" name="email" id="email" placeholder="Email" className={email && errorClsses.emailError} value={email} onChange={handleInputChange} onClick={openErrorsBlock}/>
+                                <input type="text" name="email" id="email" placeholder="Email" className={email && errorClsses.emailError} value={email} onChange={handleInputChange} onClick={openErrorsBlock} />
                                 <div className="errors-small">
                                     {
-                                        errors?.email && <div className="email-errors error"><i className="fa-solid fa-circle-exclamation"></i> <p className="error-text">{errors?.email}</p></div>
+                                        errors?.email && <div className="email-errors error"><p className="error-text">{errors?.email}</p></div>
                                     }
                                 </div>
                             </div>
@@ -188,9 +184,9 @@ export default function SignUp() {
                                 </div>
                                 <div className="errors-small">
                                     {
-                                        errors?.password && 
+                                        errors?.password &&
                                         <div className="password-errors">
-                                            <i className="fa-solid fa-circle-exclamation error-icon"></i>
+                                            
                                             <div className="password-errors-block">
                                                 {
                                                     Object.entries(errors.password).map((err) => {
@@ -202,19 +198,12 @@ export default function SignUp() {
                                     }
                                 </div>
                             </div>
-                            <input type="submit" value="Sign Up" disabled={!userName || !email || !password || Object.values(errors).join("")} />
-                            <p className="have-an-account">Have an account? <a href="/login">Sign In</a></p>
+                            <input type="submit" value="Sign Up" disabled={!userName || !email || !password || Object.values(errors).join("")} /> 
                         </form>
                     </div>
-                    <div className="wrapper-block">
-                        <div className="sign-up-info">
-                            <h3 className="sign-up-info-title">Join the AMMA-TRACK</h3>
-                            <p className="sign-up-info-text">
-                                It's your project, your way. Customize boards, views, and features to perfectly match your work style with AMMA-Track.
-                                Join the AMMA-Track revolution today! Sign up FREE and unlock the path to organized, efficient, and successful projects.
-                            </p>
-                        </div>
-                    { Object.values(errors).join("") && signUpErrorsBlock &&
+                    {/* <div className="wrapper-block">
+
+                        {Object.values(errors).join("") && signUpErrorsBlock &&
                             <div className="sign-up-errors" onClick={(e) => e.stopPropagation()}>
                                 {
                                     errors?.username && <div className="username-errors error"><i className="fa-solid fa-circle-exclamation"></i> <p className="error-text">{errors?.username}</p></div>
@@ -223,7 +212,7 @@ export default function SignUp() {
                                     errors?.email && <div className="email-errors error"><i className="fa-solid fa-circle-exclamation"></i> <p className="error-text">{errors?.email}</p></div>
                                 }
                                 {
-                                    errors?.password && 
+                                    errors?.password &&
                                     <div className="password-errors">
                                         <i className="fa-solid fa-circle-exclamation error-icon"></i>
                                         <div className="password-errors-block">
@@ -237,7 +226,7 @@ export default function SignUp() {
                                 }
                             </div>
                         }
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

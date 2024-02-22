@@ -34,7 +34,7 @@ export default function Login() {
     }
 
     if (!users.length) fetchusers()
-    
+
   }, [users.length, usersCollection, dispatch])
 
   const handleInputChange = (e) => {
@@ -72,18 +72,14 @@ export default function Login() {
 
   return (
     <>
-      <div className="st-logo">
-      <a href="/">
-          <img src={logo} alt="AMMA-Track" />
-      </a>
-      </div>
+
       <div className="login-section">
+        <h2 className="auth-title">Sign In</h2>
         <form autoComplete="off" onSubmit={handleLoginForm} className="auth-form">
-          <h2 className="auth-title">Sign In</h2>
           {
             userIsNotExists && (
-            <div className="user-is-not-exists"><i className="fa-solid fa-ban not-exists-icon"></i>User isn't exists</div>
-          )}
+              <div className="user-is-not-exists"><i className="fa-solid fa-ban not-exists-icon"></i>User isn't exists</div>
+            )}
           <div>
             <label htmlFor="email" className="floating-label">
               Email
@@ -127,7 +123,7 @@ export default function Login() {
             </div>
           </div>
           <input type="submit" value="Sign In" disabled={!email || !password} />
-          <p className="dont-have-an-account">Dont have an account? <a href="/sign-up">Sign Up</a></p>
+
         </form>
       </div>
     </>
