@@ -1,6 +1,6 @@
 import './WorkspacesItem.css'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import arrow from '../../images/down-arrow-svgrepo-com.svg'
 import board from '../../images/board-svgrepo-com.svg'
@@ -15,7 +15,7 @@ export const WorkspacesItem = ({ id, img, title }) => {
   const dispatch = useDispatch();
   const activeWorkspace = useSelector(state => state.workspaces.workspaces.find(workspace => workspace.active))
   const [isClicked, setIsClicked] = useState(false)
-  const [isActive, setIsActive] = useState('')
+  const [isActive, setIsActive] = useState('boards')
   const handleClick = (type, obj) => {
     setIsActive(type);
     dispatch(toggleActiveWorkspace(obj));
@@ -23,7 +23,9 @@ export const WorkspacesItem = ({ id, img, title }) => {
     if (type === 'settings')
       dispatch(openSettings())
   }
-
+  useEffect(() => {
+    setIsClicked(activeWorkspace?.id === id)
+  }, [activeWorkspace])
   return (<div className="workspaces-item">
     <div onClick={() => setIsClicked((prev) => !prev)} className="workspaces-item__info">
       <div className="workspaces-item__img" ><img src={img.thumb} alt="img" /></div>
@@ -31,11 +33,11 @@ export const WorkspacesItem = ({ id, img, title }) => {
       <img className={`workspaces-arrow ${isClicked ? 'workspaces-arrow--rotated' : ''}`} src={arrow} alt="" />
     </div>
     <div className={`workspaces-item__more ${isClicked ? 'active' : ''}`}>
-      <div onClick={() => {handleClick('boards', { id, img, title });dispatch(boardCreationBoxHandle({val:false}));dispatch(workspaceCreationBoxHandle({val:false}))}} className={`workspaces-item__more-tab ${activeWorkspace?.id === id && isActive === 'boards' ? 'active' : ''} workspaces-item__more-boards`}>
+      <div onClick={() => { handleClick('boards', { id, img, title }); dispatch(boardCreationBoxHandle({ val: false })); dispatch(workspaceCreationBoxHandle({ val: false })) }} className={`workspaces-item__more-tab ${activeWorkspace?.id === id && isActive === 'boards' ? 'active' : ''} workspaces-item__more-boards`}>
         <img className='workspaces-item__more-icon' src={board} alt="" />
         <span>Boards</span>
       </div>
-      <div onClick={() => {handleClick('settings', { id, img, title });dispatch(boardCreationBoxHandle({val:false}));dispatch(workspaceCreationBoxHandle({val:false}))}} className={`workspaces-item__more-tab ${activeWorkspace?.id === id && isActive === 'settings' ? 'active' : ''} workspaces-item__more-settings`}>
+      <div onClick={() => { handleClick('settings', { id, img, title }); dispatch(boardCreationBoxHandle({ val: false })); dispatch(workspaceCreationBoxHandle({ val: false })) }} className={`workspaces-item__more-tab ${activeWorkspace?.id === id && isActive === 'settings' ? 'active' : ''} workspaces-item__more-settings`}>
         <img className='workspaces-item__more-icon' src={settings} alt="" />
         <span>Settings</span>
       </div>
