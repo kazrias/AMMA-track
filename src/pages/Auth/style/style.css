@@ -23,7 +23,7 @@
   background-color: #ecf0f3;
 }
 
-.login-section .auth-title{
+.login-section .auth-title {
   margin-top: 91px;
   text-align: center;
 }
@@ -107,6 +107,7 @@
   box-sizing: border-box;
   background: #ecf0f3;
   box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+  gap: 20px;
 }
 
 .auth-form label {
@@ -124,10 +125,7 @@
   width: 100%;
 }
 
-.pass-label-block,
-.auth-form input:not([name="password"]) {
-  margin-bottom: 20px;
-}
+
 
 .auth-form input:not([type="submit"]) {
   background: #ecf0f3;
@@ -140,11 +138,9 @@
 }
 
 .auth-form input[type="submit"] {
-  background: linear-gradient(
-    141deg,
-    rgba(255, 154, 0, 1) 0%,
-    rgba(205, 0, 255, 1) 100%
-  );
+  background: linear-gradient(141deg,
+      rgba(255, 154, 0, 1) 0%,
+      rgba(205, 0, 255, 1) 100%);
   color: white;
   height: 40px;
   border-radius: 20px;
@@ -155,13 +151,13 @@
 }
 
 .auth-form input[type="submit"]:hover {
-  background: linear-gradient(
-    141deg,
-    rgba(255, 153, 0, 0.96) 0%,
-    rgba(205, 0, 255, 0.96) 100%
-  );
-  transform: scale(1.01); /* Increase size on hover */
-  box-shadow: 8px 8px 8px #cbced1, -8px -8px 8px white; /* Increase shadow on hover */
+  background: linear-gradient(141deg,
+      rgba(255, 153, 0, 0.96) 0%,
+      rgba(205, 0, 255, 0.96) 100%);
+  transform: scale(1.01);
+  /* Increase size on hover */
+  box-shadow: 8px 8px 8px #cbced1, -8px -8px 8px white;
+  /* Increase shadow on hover */
 }
 
 .auth-form input[type="submit"]:active {
