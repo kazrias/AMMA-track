@@ -155,7 +155,7 @@ export default function SignUp() {
                                 userExists && <div className="user-is-not-exists">User is already exists</div>
                             }
                             <div className="username">
-                                <label htmlFor="username" >User Name</label>
+                                <label htmlFor="username" >Usename</label>
                                 <input type="text" name="username" id="username" placeholder="User Name" className={userName && errorClsses.userNameError} value={userName} onChange={handleInputChange} onClick={openErrorsBlock} />
                                 <div className="errors-small">
                                     {

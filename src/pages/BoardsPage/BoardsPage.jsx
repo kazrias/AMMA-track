@@ -16,10 +16,7 @@ const BoardsPage = () => {
   const settings = useSelector(state => state.workspaces.settingsOpened);
   const workspaces = useSelector((state) => state.workspaces.workspaces)
   const dispatch = useDispatch()
-  useEffect(() => {
-    const activeWorkspaceId = localStorage.getItem('activeWorkspaceId')
-    dispatch(toggleActiveWorkspace({ id: activeWorkspaceId }))
-  }, [workspaces.length])
+  
   return (
     <>
       <Header />

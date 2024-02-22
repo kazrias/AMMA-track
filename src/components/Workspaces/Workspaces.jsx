@@ -4,7 +4,7 @@ import './Workspaces.css'
 import { useEffect } from 'react'
 //components
 import { workspaceCreationBoxHandle } from '../../redux/slices/creationBoxSlice'
-import { addWorkspace,toggleActiveWorkspace } from '../../redux/slices/workspacesSlice'
+import { addWorkspace, toggleActiveWorkspace } from '../../redux/slices/workspacesSlice'
 import { Button } from '../Button/Button'
 import { WorkspacesItem } from '../WorkspacesItem/WorkspacesItem'
 import { CreateBox } from '../CreateBox/CreateBox'
@@ -30,6 +30,11 @@ export const Workspaces = () => {
   const loggedIn = window.localStorage.getItem("isLoggedIn")
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const activeWorkspaceId = localStorage.getItem('activeWorkspaceId');
+    if (workspacesToShow.find(({ id }) => id === activeWorkspaceId))
+      dispatch(toggleActiveWorkspace({ id: activeWorkspaceId }))
+  }, [workspacesToShow.length])
   useEffect(() => {
     if (loggedIn && loggedIn === "OFF") {
       navigate("/");
@@ -61,7 +66,7 @@ export const Workspaces = () => {
         })
       }
       {
-        
+
       }
     </div>
 
