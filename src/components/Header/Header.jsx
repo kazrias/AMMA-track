@@ -3,6 +3,8 @@ import "./Header.css";
 import { Button } from "../Button/Button";
 
 import ammaTruckLogo from "../../images/amma-truck-logo.png";
+import userAvatar from "../../images/user-128.svg"
+import us from '../../images/us.png'
 
 import { useDispatch, useSelector } from "react-redux";
 import { deleteActiveWorkspace, closeSettings } from "../../redux/slices/workspacesSlice";
@@ -28,14 +30,10 @@ export const Header = () => {
       </>
     );
   } else {
-    const userAvatar =
-      loggedUser && loggedUser.userName
-        ? loggedUser.userName[0].toUpperCase()
-        : "";
     buttons = (
       <>
         <Link to="/account">
-          <Button onClick={() => { dispatch(closeSettings()); dispatch(boardCreationBoxHandle({ val: false })); dispatch(workspaceCreationBoxHandle({ val: false })) }} type="account-btn">{userAvatar}</Button>
+          <Button onClick={() => { dispatch(closeSettings()); dispatch(boardCreationBoxHandle({ val: false })); dispatch(workspaceCreationBoxHandle({ val: false })) }} type="account-btn"><div className="user-avatar"><img src={us} alt="" /></div></Button>
         </Link>
         <Link to="/log-out">
           <Button
