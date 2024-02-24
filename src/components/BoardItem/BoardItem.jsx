@@ -1,11 +1,14 @@
-import { useState, useRef, useEffect } from 'react';
 import './BoardItem.css'
-import { deleteBoard } from '../../redux/slices/boardsSlice';
-import { Link } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
+import { deleteBoard } from '../../redux/slices/boardsSlice';
 import { remainingInc } from '../../redux/slices/workspacesSlice';
 import { boardCreationBoxHandle,workspaceCreationBoxHandle } from '../../redux/slices/creationBoxSlice';
 import { editBoard } from '../../redux/slices/boardsSlice';
+
+import { Link } from 'react-router-dom';
+
 import { db } from '../../config/firebaseConfig';
 import { collection, updateDoc, getDocs, deleteDoc, doc } from 'firebase/firestore'
 export const BoardItem = ({ id, img, title }) => {

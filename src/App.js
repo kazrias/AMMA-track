@@ -2,7 +2,6 @@ import "./App.css";
 
 import { useEffect } from "react";
 
-import { login } from "./redux/slices/authenticationSlice";
 import { Header } from "./components/Header/Header";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
@@ -14,6 +13,7 @@ import BoardPage from "./pages/BoardPage/BoardPage";
 import NotFound from "./pages/NotFound";
 
 import { useDispatch } from "react-redux";
+import { login } from "./redux/slices/authenticationSlice";
 
 import { Route, Routes } from "react-router-dom";
 

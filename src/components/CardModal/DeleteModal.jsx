@@ -1,6 +1,3 @@
-// DeleteModal.jsx
-
-import React from "react";
 import "./DeleteModal.css";
 
 const DeleteModal = ({ isOpen, onClose, onDelete, children }) => {

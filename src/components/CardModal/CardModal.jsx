@@ -1,7 +1,10 @@
 import './CardModal.css'
-import { useSelector } from 'react-redux'; 
+
 import CardDescription from './CardDescription';
+
 import logo from "../../images/amma-truck-logo.png"
+
+import { useSelector } from 'react-redux'; 
 
 function CardModal({ cardID, setCardModal, setCardId }) {
     const path = window.location.href.split("/");

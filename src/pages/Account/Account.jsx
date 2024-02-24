@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import "./Account.css";
+
+import { useState } from "react";
+
+import cameraIcon from "../../images/camera-icon.svg";
+
+import { validatePassword } from "../../validations/validate";
+
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
 import {
   updatePassword,
   switchAccount,
@@ -9,9 +15,10 @@ import {
   updateUserImage,
   logOut
 } from "../../redux/slices/authenticationSlice";
-import "./Account.css";
-import cameraIcon from "../../images/camera-icon.svg";
-import { validatePassword } from "../../validations/validate";
+
+
+import { Navigate, useNavigate } from "react-router-dom";
+
 import { db } from "../../config/firebaseConfig";
 import {
   collection,
@@ -20,7 +27,7 @@ import {
   deleteDoc,
   doc
 } from "firebase/firestore";
-import DeleteModal from "../../components/CardModal/DeleteModal";
+
 
 export default function Account() {
   const dispatch = useDispatch();
@@ -35,6 +42,7 @@ export default function Account() {
   const [showChangeUsernameModal, setShowChangeUsernameModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const usersCollection = collection(db, "users");
+
 
   if (!user) {
     return <Navigate to="/login" />;

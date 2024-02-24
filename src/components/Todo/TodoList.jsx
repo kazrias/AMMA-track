@@ -1,11 +1,16 @@
 import './TodoList.css';
+
 import { useState, useEffect } from 'react';
+
 import TodoListContainer from './TodoListContainer';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { addList, removeList } from '../../redux/slices/todosSlice';
 import { addCard, removeCard } from '../../redux/slices/cardsSlice';
+
 import { db } from '../../config/firebaseConfig';
 import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
+
 const TodoList = ({ boardId, setCardModal, setCardId }) => {
   const dispatch = useDispatch();
   const lists = useSelector(state => state.todos);

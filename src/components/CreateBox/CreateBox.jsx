@@ -2,6 +2,8 @@ import './CreateBox.css'
 
 import { useEffect, useState } from 'react'
 
+import { MAX_COUNT } from '../../constants/boards'
+
 import { Button } from '../Button/Button'
 import { ImgWrapper } from './ImgWrapper/ImgWrapper'
 
@@ -12,12 +14,8 @@ import { addWorkspace, selectWorkspaceImg, remainingDecr } from
 
 import { unsplash } from '../../lib/unsplash'
 
-
-
 import { db } from '../../config/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
-
-import { MAX_COUNT } from '../../constants/boards'
 
 export const CreateBox = ({ setCreateCount, type, handleBox }) => {
   const [title, setTitle] = useState('');

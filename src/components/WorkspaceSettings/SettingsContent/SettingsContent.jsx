@@ -1,15 +1,16 @@
-import { ImgWrapper } from "../../CreateBox/ImgWrapper/ImgWrapper";
+
 import { useState, useEffect } from "react";
+
+import { WORKSPACE_PRICE } from '../../../constants/workspacePrice'
+import { MAX_COUNT } from "../../../constants/boards";
 
 import { useSelector, useDispatch } from "react-redux"
 import { changeTitle, changeIcon, deleteWorkspace, closeSettings, activateProStatus } from "../../../redux/slices/workspacesSlice"
 
 import { unsplash } from "../../../lib/unsplash";
+
 import { db } from "../../../config/firebaseConfig"
 import { collection, updateDoc, getDocs, deleteDoc, doc } from 'firebase/firestore'
-
-import { WORKSPACE_PRICE } from '../../../constants/workspacePrice'
-import { MAX_COUNT } from "../../../constants/boards";
 
 export const SettingsContent = ({ type }) => {
 

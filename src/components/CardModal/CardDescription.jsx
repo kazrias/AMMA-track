@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { collection, addDoc, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { addDescription } from '../../redux/slices/cardModalSlice';
+
 import ReactQuill from 'react-quill';
-import { db } from '../../config/firebaseConfig';
 import 'react-quill/dist/quill.snow.css'; 
+
+import { db } from '../../config/firebaseConfig';
+import { collection, addDoc, getDocs, updateDoc, doc } from 'firebase/firestore';
 
 
 function CardDescription({ cardID }) {

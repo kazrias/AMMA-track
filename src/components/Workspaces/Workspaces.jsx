@@ -2,6 +2,8 @@
 import './Workspaces.css'
 //react hooks
 import { useEffect } from 'react'
+//constants
+
 //components
 import { workspaceCreationBoxHandle } from '../../redux/slices/creationBoxSlice'
 import { addWorkspace, toggleActiveWorkspace } from '../../redux/slices/workspacesSlice'

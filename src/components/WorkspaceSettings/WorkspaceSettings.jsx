@@ -7,7 +7,6 @@ import { SettingsContent } from './SettingsContent/SettingsContent';
 import { useDispatch } from 'react-redux';
 import { closeSettings } from '../../redux/slices/workspacesSlice';
 
-
 export const WorkspaceSettings = () => {
   const [currentSetting, setCurrentSetting] = useState('title');
   const dispatch = useDispatch();

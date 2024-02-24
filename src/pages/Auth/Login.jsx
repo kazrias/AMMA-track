@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
-import { collection, getDocs } from 'firebase/firestore';
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { login } from "../../redux/slices/authenticationSlice";
-import CryptoJS from "crypto-js";
-import { signUp } from "../../redux/slices/authenticationSlice";
-import { db } from "../../config/firebaseConfig";
-import logo from "../../images/amma-truck-logo.png"
 import "./style/style.css"
+
+import { useState, useEffect } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+import { login, signUp } from "../../redux/slices/authenticationSlice";
+
+import { useNavigate } from "react-router-dom";
+import CryptoJS from "crypto-js";
+
+import { db } from "../../config/firebaseConfig";
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function Login() {
   const navigate = useNavigate();

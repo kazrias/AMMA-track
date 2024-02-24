@@ -1,4 +1,5 @@
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+
 const TodoListCard = ({
   list,
   activeListId,
@@ -12,13 +13,11 @@ const TodoListCard = ({
   setCardModal,
   setCardId
 }) => {
-
   const openCardModal = (cardID, setCardModal, setCardId) => {
     document.body.style.overflowY = "hidden";
     setCardModal(() => true);
     setCardId(() => cardID)
   }
-
 
   return (
     <div className={`list ${activeListId === list.id ? 'active' : ''}`} onClick={() => handleSetActiveList(list.id)}>
