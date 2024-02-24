@@ -5,15 +5,14 @@ import { useEffect } from "react";
 import { Header } from "./components/Header/Header";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
-import Account from "./pages/Account/Account";
 import LogOut from "./pages/Auth/LogOut";
 import MainPage from "./pages/MainPage";
 import BoardsPage from "./pages/BoardsPage/BoardsPage";
 import BoardPage from "./pages/BoardPage/BoardPage";
 import NotFound from "./pages/NotFound";
 
-import { useDispatch } from "react-redux";
 import { login } from "./redux/slices/authenticationSlice";
+import { useDispatch } from "react-redux";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -37,7 +36,6 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/account" element={<Account />} />
           <Route path="/log-out" element={<LogOut />} />
           <Route path="/workspaces" element={<BoardsPage />} />
           <Route path="/workspaces/:id" element={<BoardPage />} />

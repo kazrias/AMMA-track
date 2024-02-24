@@ -39,17 +39,6 @@ export const authSlice = createSlice({
       window.localStorage.setItem("isLoggedIn", "OFF");
       window.localStorage.removeItem("loggedUser");
     },
-
-    updateUserImage: (state, action) => {
-      const { userId, imageUrl } = action.payload;
-      if (state.loggedUser && state.loggedUser.id === userId) {
-        state.loggedUser.image = imageUrl;
-      }
-      const userIndex = state.users.findIndex((u) => u.id === userId);
-      if (userIndex !== -1) {
-        state.users[userIndex].image = imageUrl;
-      }
-    },
     updatePassword: (state, action) => {
       const { userId, newPassword } = action.payload;
       const user = state.users.find((u) => u.id === userId);
@@ -109,7 +98,6 @@ export const {
   updateUsername,
   switchAccount,
   deleteAccount,
-  updateUserImage
 } = authSlice.actions;
 
 export default authSlice.reducer;

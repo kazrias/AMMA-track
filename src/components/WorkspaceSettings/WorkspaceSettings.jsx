@@ -15,8 +15,6 @@ export const WorkspaceSettings = () => {
     const handleClickOutside = (event) => {
       if (settingsRef.current && !settingsRef.current.contains(event.target) && event.target.textContent !== 'Settings') {
         dispatch(closeSettings())
-        console.log('aaa');
-
       }
     };
     document.addEventListener('click', handleClickOutside);

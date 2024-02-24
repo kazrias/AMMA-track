@@ -55,13 +55,7 @@
 }
 
 /* >>>>>>>>>>>> */
-.boardItem__menu {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  z-index: 99999;
-  font-size: 14px;
-}
+
 
 .boardItem__editBtn {
   background-color: transparent;

@@ -1,69 +1,37 @@
-.account-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #ecf0f3;
-}
+
 
 .account-container {
-  background: #fff;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
-  text-align: center;
-  width: 350px;
+  /* visibility: hidden;
+  opacity: 0; */
+  transition: all .3s;
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
-.account-avatar img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.account-details h2,
-.account-details p {
-  margin: 10px 0;
-  color: #333;
-}
-
-.account-details input,
-.account-details button {
-  width: 100%;
-  padding: 10px 20px;
-  margin: 10px 0;
-  border-radius: 50px;
-  border: none;
-  outline: none;
-  font-size: 14px;
-}
-
-.account-details button {
-  background: linear-gradient(
-    141deg,
-    rgba(255, 153, 0, 0.96) 0%,
-    rgba(205, 0, 255, 0.96) 100%
-  );
-  color: white;
+.account-container button {
+  text-align: left;
+  font-size: 13px;
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all .3s;
+  margin-top: -1px;
+  width: 100px;
+  height: 40px;
+  /* border-radius:0 !important ; */
   cursor: pointer;
-  font-weight: 900;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
 }
 
-.account-details button:hover {
-  background: linear-gradient(
-    141deg,
-    rgba(255, 153, 0, 0.96) 0%,
-    rgba(205, 0, 255, 0.96) 100%
-  );
-  box-shadow: 4px 4px 6px #cbced1, -4px -4px 6px white;
+.account-container button:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 
-.account-details button:active {
-  box-shadow: inset 1px 1px 1px #cbced1, inset -1px -1px 1px white;
-}
 
 .input-error,
 .valid-input {
@@ -207,6 +175,7 @@
   box-shadow: inset 4px 4px 4px #cbced1, inset -4px -4px 4px white !important;
   transition: all 0.3s ease-in-out;
 }
+
 .change-modal-content button,
 .delete-modal-content button {
   padding: 10px 20px;

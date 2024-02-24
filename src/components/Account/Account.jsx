@@ -1,21 +1,16 @@
 import "./Account.css";
 
-import { useState } from "react";
-
-import cameraIcon from "../../images/camera-icon.svg";
+import { useState, forwardRef } from "react";
 
 import { validatePassword } from "../../validations/validate";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
   updatePassword,
-  switchAccount,
   deleteAccount,
   updateUsername,
-  updateUserImage,
   logOut
 } from "../../redux/slices/authenticationSlice";
-
 
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -29,7 +24,7 @@ import {
 } from "firebase/firestore";
 
 
-export default function Account() {
+export const Account = forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.loggedUser);
@@ -37,7 +32,6 @@ export default function Account() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordErrors, setPasswordErrors] = useState({});
   const [newUsername, setNewUsername] = useState("");
-  const [feedbackMessage, setFeedbackMessage] = useState("");
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
   const [showChangeUsernameModal, setShowChangeUsernameModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -71,7 +65,7 @@ export default function Account() {
       dispatch(updatePassword({ userId: user.id, newPassword }));
       setNewPassword();
       setConfirmPassword("");
-      setFeedbackMessage("Password successfully changed.");
+
       setShowChangePasswordModal(false);
       await changeAccountData({ password: newPassword });
     } else if (newPassword !== confirmPassword) {
@@ -85,22 +79,17 @@ export default function Account() {
   const handleUsernameChange = async (e) => {
     e.preventDefault();
     if (newUsername.trim() === "") {
-      setFeedbackMessage("Username cannot be empty.");
+
       return;
     }
     const updatedUser = { ...user, userName: newUsername };
     dispatch(updateUsername({ userId: user.id, newUsername }));
     window.localStorage.setItem("loggedUser", JSON.stringify(updatedUser));
     setShowChangeUsernameModal(false);
-    setFeedbackMessage("Username successfully changed.");
+
     await changeAccountData({ userName: newUsername });
   };
 
-  const handleSwitchAccount = () => {
-    dispatch(switchAccount());
-    dispatch(logOut());
-    navigate("/login");
-  };
 
   const handleDeleteAccount = () => {
     setShowDeleteModal(true);
@@ -119,23 +108,9 @@ export default function Account() {
     navigate("/");
   };
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        dispatch(updateUserImage({ userId: user.id, imageUrl: reader.result }));
-      };
-      reader.readAsDataURL(file);
-      console.log(file);
-      await changeAccountData({ image: file.name });
-    }
-  };
-
-  const userInitial = user.userName ? user.userName[0].toUpperCase() : "";
 
   return (
-    <div className="account-section">
+    <div ref={ref} className="accountSettings-section" >
       {showChangePasswordModal && (
         <div className="change-modal">
           <div className="change-modal-content">
@@ -170,73 +145,52 @@ export default function Account() {
           </div>
         </div>
       )}
-      {showChangeUsernameModal && (
-        <div className="change-modal">
-          <div className="change-modal-content">
-            <h2>Change Username</h2>
-            <form onSubmit={handleUsernameChange}>
-              <input
-                type="text"
-                placeholder="New Username"
-                value={newUsername}
-                onChange={(e) => setNewUsername(e.target.value)}
-              />
-              <button type="submit">Change Username</button>
-              <button onClick={() => setShowChangeUsernameModal(false)}>
-                Cancel
-              </button>
-            </form>
+      {
+        showChangeUsernameModal && (
+          <div className="change-modal">
+            <div className="change-modal-content">
+              <h2>Change Username</h2>
+              <form onSubmit={handleUsernameChange}>
+                <input
+                  type="text"
+                  placeholder="New Username"
+                  value={newUsername}
+                  onChange={(e) => setNewUsername(e.target.value)}
+                />
+                <button type="submit">Change Username</button>
+                <button onClick={() => setShowChangeUsernameModal(false)}>
+                  Cancel
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
-      )}
-      {showDeleteModal && (
-        <div className="delete-modal">
-          <div className="delete-modal-content">
-            <h2>Confirm Account Deletion</h2>
-            <p>
-              Are you sure you want to delete your account? This action cannot
-              be undone.
-            </p>
-            <button onClick={handleDeleteConfirmation}>Yes, Delete</button>
-            <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
+        )
+      }
+      {
+        showDeleteModal && (
+          <div className="delete-modal">
+            <div className="delete-modal-content">
+              <h2>Confirm Account Deletion</h2>
+              <p>
+                Are you sure you want to delete your account? This action cannot
+                be undone.
+              </p>
+              <button onClick={handleDeleteConfirmation}>Yes, Delete</button>
+              <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
       <div className="account-container">
-        <div className="account-avatar">
-          {user.image ? (
-            <img src={user.image} alt="Profile" />
-          ) : (
-            <div className="default-avatar">{userInitial}</div>
-          )}
-          <div className="account-avatar-overlay">
-            <img
-              src={cameraIcon}
-              alt="Update"
-              className="account-avatar-icon"
-            />
-            <input type="file" id="imageUpload" onChange={handleImageUpload} />
-            <label htmlFor="imageUpload" className="account-avatar-upload">
-              Update Photo
-            </label>
-          </div>
-        </div>
-        <div className="account-details">
-          <h2>{user.userName}</h2>
-          <p>{user.email}</p>
-          <button onClick={() => setShowChangePasswordModal(true)}>
-            Change Password
-          </button>
-          <button onClick={() => setShowChangeUsernameModal(true)}>
-            Change Username
-          </button>
-          {feedbackMessage && (
-            <p className="feedback-message">{feedbackMessage}</p>
-          )}
-          <button onClick={handleSwitchAccount}>Switch Account</button>
-          <button onClick={handleDeleteAccount}>Delete Account</button>
-        </div>
+        <button onClick={() => setShowChangeUsernameModal(true)}>
+          Change Username
+        </button>
+        <button onClick={() => setShowChangePasswordModal(true)}>
+          Change Password
+        </button>
+        <button onClick={handleDeleteAccount}>Delete Account</button>
+
       </div>
-    </div>
+    </div >
   );
-}
+})

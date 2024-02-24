@@ -1,6 +1,9 @@
 import "./Header.css";
 
+import { useState, useRef, useEffect } from "react";
+
 import { Button } from "../Button/Button";
+import { Account } from "../Account/Account"
 
 import ammaTruckLogo from "../../images/amma-truck-logo.png";
 import us from '../../images/us.png'
@@ -13,10 +16,30 @@ import { boardCreationBoxHandle, workspaceCreationBoxHandle } from "../../redux/
 import { Link } from "react-router-dom";
 
 export const Header = () => {
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
   let buttons;
-
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
   const dispatch = useDispatch();
+  const [settingsOpened, setSettingsOpened] = useState(false)
+  const onClickAccount = () => {
+    dispatch(closeSettings());
+    dispatch(boardCreationBoxHandle({ val: false }));
+    dispatch(workspaceCreationBoxHandle({ val: false }))
+    setSettingsOpened(true)
+  }
+  const accountSettingsRef = useRef(null)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+
+      if (accountSettingsRef.current && !accountSettingsRef.current.contains(event.target) && event.target.alt !== 'userImg') {
+        console.log('clicked');
+        setSettingsOpened(false)
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
   if (!loggedIn) {
     buttons = (
       <>
@@ -31,9 +54,11 @@ export const Header = () => {
   } else {
     buttons = (
       <>
-        <Link to="/account">
-          <Button onClick={() => { dispatch(closeSettings()); dispatch(boardCreationBoxHandle({ val: false })); dispatch(workspaceCreationBoxHandle({ val: false })) }} type="account-btn"><div className="user-avatar"><img src={us} alt="" /></div></Button>
-        </Link>
+
+        <div className="account-setting">
+          <Button onClick={onClickAccount} type="account-btn"><div className="user-avatar"><img src={us} alt="userImg" /></div></Button>
+          {settingsOpened && <Account ref={accountSettingsRef} />}
+        </div>
         <Link to="/log-out">
           <Button
             onClick={() => { dispatch(closeSettings()); dispatch(deleteActiveWorkspace({})); dispatch(boardCreationBoxHandle({ val: false })); dispatch(workspaceCreationBoxHandle({ val: false })) }}
