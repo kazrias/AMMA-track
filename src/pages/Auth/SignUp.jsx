@@ -108,11 +108,11 @@ export default function SignUp() {
 
             if (!users.length || !userExistsBool) {
                 dispatch(signUp({ id, userName, email, password: hashPassword(password) }));
+                await addDoc(usersCollection, { id, userName, email, password: hashPassword(password) })
                 setErrors(() => "");
                 setEmail(() => "");
                 setUserName(() => "");
                 setPassword(() => "");
-                await addDoc(usersCollection, { id, userName, email, password: hashPassword(password) })
                 navigate("/login");
             }
         }

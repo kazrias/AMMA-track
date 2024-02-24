@@ -12,7 +12,9 @@ import {
   logOut
 } from "../../redux/slices/authenticationSlice";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import CryptoJS from "crypto-js";
+
 
 import { db } from "../../config/firebaseConfig";
 import {
@@ -25,6 +27,7 @@ import {
 
 
 export const Account = forwardRef((props, ref) => {
+  console.log(props, 'props');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.loggedUser);
@@ -36,11 +39,6 @@ export const Account = forwardRef((props, ref) => {
   const [showChangeUsernameModal, setShowChangeUsernameModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const usersCollection = collection(db, "users");
-
-
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
 
   const changeAccountData = async (data) => {
     const snapshot = await getDocs(usersCollection);
@@ -62,12 +60,12 @@ export const Account = forwardRef((props, ref) => {
     setPasswordErrors(errors);
 
     if (Object.keys(errors).length === 0 && newPassword === confirmPassword) {
-      dispatch(updatePassword({ userId: user.id, newPassword }));
+      dispatch(updatePassword({ userId: user.id, newPassword: CryptoJS.SHA256(newPassword).toString(CryptoJS.enc.Hex) }));
       setNewPassword();
       setConfirmPassword("");
 
       setShowChangePasswordModal(false);
-      await changeAccountData({ password: newPassword });
+      await changeAccountData({ password: CryptoJS.SHA256(newPassword).toString(CryptoJS.enc.Hex) });
     } else if (newPassword !== confirmPassword) {
       setPasswordErrors({
         ...errors,
@@ -79,7 +77,6 @@ export const Account = forwardRef((props, ref) => {
   const handleUsernameChange = async (e) => {
     e.preventDefault();
     if (newUsername.trim() === "") {
-
       return;
     }
     const updatedUser = { ...user, userName: newUsername };
@@ -137,10 +134,12 @@ export const Account = forwardRef((props, ref) => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-              <button type="submit">Change Password</button>
-              <button onClick={() => setShowChangePasswordModal(false)}>
-                Cancel
-              </button>
+              <div className="form__modal-btns">
+                <button type="submit">Change Password</button>
+                <button onClick={() => setShowChangePasswordModal(false)}>
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
         </div>
@@ -157,10 +156,12 @@ export const Account = forwardRef((props, ref) => {
                   value={newUsername}
                   onChange={(e) => setNewUsername(e.target.value)}
                 />
-                <button type="submit">Change Username</button>
-                <button onClick={() => setShowChangeUsernameModal(false)}>
-                  Cancel
-                </button>
+                <div className="form__modal-btns">
+                  <button type="submit">Change Username</button>
+                  <button onClick={() => setShowChangeUsernameModal(false)}>
+                    Cancel
+                  </button>
+                </div>
               </form>
             </div>
           </div>
@@ -175,8 +176,10 @@ export const Account = forwardRef((props, ref) => {
                 Are you sure you want to delete your account? This action cannot
                 be undone.
               </p>
-              <button onClick={handleDeleteConfirmation}>Yes, Delete</button>
-              <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
+              <div className="form__modal-btns form__modal-btns--delete">
+                <button onClick={handleDeleteConfirmation}>Yes, Delete</button>
+                <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
+              </div>
             </div>
           </div>
         )
@@ -189,7 +192,7 @@ export const Account = forwardRef((props, ref) => {
           Change Password
         </button>
         <button onClick={handleDeleteAccount}>Delete Account</button>
-
+        <button onClick={props.onClickLogout}>Logout</button>
       </div>
     </div >
   );

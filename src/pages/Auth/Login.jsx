@@ -67,7 +67,10 @@ export default function Login() {
     }
     setUserIsNotExists(() => true)
   };
-
+  useEffect(() => {
+    let loggedUs = window.localStorage.getItem('loggedUser');
+    if (loggedUs) dispatch(login(loggedUs));
+  }, [])
   const togglePasswordEye = () => {
     setPasswordEye((value) => !value);
   };

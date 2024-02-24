@@ -153,6 +153,10 @@ button.setting-close{
   background-color: rgb(217, 139, 139);
   right: 10px;
   margin: 0px;
+  transition: all .3s;
+}
+.setting-close:hover{
+  background-color: rgb(225, 77, 77);
 }
 .setting-close span{
   display: block;

@@ -143,9 +143,7 @@ export const SettingsContent = ({ type }) => {
               return (
                 <div className="settings-icon">
                   <p className="settings-title__text">We're working on this future.</p>
-                  <p className="settings-title__text">It will give you the opportunity to share this subject with your colleagues and work together. </p>
-
-                  {/* <button onClick={iconChange}>Delete</button> */}
+                  <p className="settings-title__text">It will give you the opportunity to share this workspace with your colleagues and work together. </p>
                 </div>
               )
             }

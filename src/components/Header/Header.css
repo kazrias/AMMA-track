@@ -52,4 +52,6 @@
 
 .account-setting{
   position: relative;
+  display: flex;
+  align-items: center;
 }
