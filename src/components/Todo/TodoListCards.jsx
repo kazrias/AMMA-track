@@ -26,7 +26,7 @@ const TodoListCard = ({
         <button onClick={() => handleRemoveList(list.id)}><i className="fa-solid fa-x"></i></button>
       </div>
       <Droppable droppableId={list.id} type="CARD">
-        {(provided, snapshot) => (
+        {(provided) => (
           <ul
             ref={provided.innerRef}
             {...provided.droppableProps}

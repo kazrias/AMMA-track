@@ -3,7 +3,6 @@ import "./Header.css";
 import { Button } from "../Button/Button";
 
 import ammaTruckLogo from "../../images/amma-truck-logo.png";
-import userAvatar from "../../images/user-128.svg"
 import us from '../../images/us.png'
 
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +15,7 @@ import { Link } from "react-router-dom";
 export const Header = () => {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   let buttons;
-  const loggedUser = useSelector((state) => state.auth.loggedUser);
+
   const dispatch = useDispatch();
   if (!loggedIn) {
     buttons = (

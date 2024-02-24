@@ -93,7 +93,6 @@ export default function Account() {
     window.localStorage.setItem("loggedUser", JSON.stringify(updatedUser));
     setShowChangeUsernameModal(false);
     setFeedbackMessage("Username successfully changed.");
-    const snapshot = await getDocs(usersCollection);
     await changeAccountData({ userName: newUsername });
   };
 

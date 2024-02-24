@@ -36,7 +36,7 @@ export const Workspaces = () => {
     const activeWorkspaceId = localStorage.getItem('activeWorkspaceId');
     if (workspacesToShow.find(({ id }) => id === activeWorkspaceId))
       dispatch(toggleActiveWorkspace({ id: activeWorkspaceId }))
-  }, [workspacesToShow.length])
+  }, [dispatch,workspacesToShow.length])
   useEffect(() => {
     if (loggedIn && loggedIn === "OFF") {
       navigate("/");

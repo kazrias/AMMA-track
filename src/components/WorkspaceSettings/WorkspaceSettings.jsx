@@ -23,7 +23,7 @@ export const WorkspaceSettings = () => {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  }, [dispatch]);
   return (
     <div ref={settingsRef} className="settings-container">
       <div className="settings-wrapper">
