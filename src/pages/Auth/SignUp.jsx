@@ -44,9 +44,9 @@ export default function SignUp() {
             snapshot.docs.map((doc) => (dispatch(signUp({ ...doc.data() }))))
         }
 
-        fetchusers()
+        if (!users.length) fetchusers()
 
-    }, [dispatch])
+    }, [users.length, usersCollection, dispatch])
 
     useEffect(() => {
         const uname = validateUserName(userName);
