@@ -15,6 +15,7 @@ import { collection, getDocs, addDoc } from 'firebase/firestore';
 
 
 export default function SignUp() {
+
     const navigate = useNavigate();
     const users = useSelector((state) => state.auth.users);
     const dispatch = useDispatch();
@@ -22,12 +23,11 @@ export default function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
-    const [userExists, setUserExists] = useState(false);
     const [errorClsses, setErrorClasses] = useState({});
     const [passwordEye, setPasswordEye] = useState(false);
     const [signUpErrorsBlock, setSignUpErrorsBlock] = useState(true);
+    const [userExists, setUserExists] = useState(false);
     const usersCollection = collection(db, 'users');
-    let userExistsBool = true;
     const loggedIn = window.localStorage.getItem("isLoggedIn");
 
     useEffect(() => {
@@ -37,14 +37,16 @@ export default function SignUp() {
     }, [loggedIn, navigate]);
 
     useEffect(() => {
+
         const fetchusers = async () => {
+            console.log('worked');
             const snapshot = await getDocs(usersCollection)
             snapshot.docs.map((doc) => (dispatch(signUp({ ...doc.data() }))))
         }
 
-        if (!users.length) fetchusers()
+        fetchusers()
 
-    }, [users.length, usersCollection, dispatch])
+    }, [dispatch])
 
     useEffect(() => {
         const uname = validateUserName(userName);
@@ -84,31 +86,22 @@ export default function SignUp() {
 
     const handleSignUpFormOnsubmit = async (e) => {
         e.preventDefault();
-
-        const usersCount = users.length;
-        let id = 1;
-
-        if (users && usersCount) {
-            let lastUserId = users[usersCount - 1]["id"];
-            id = lastUserId ? ++lastUserId : id;
-        }
+        let id = new Date().toISOString()
 
         if (!Object.values(errors).join("")) {
-
-            users.forEach((item) => {
-
+            let existVal = false;
+            for (let item of users) {
                 if (item.email === email || item.userName === userName) {
-                    userExistsBool = true;
-                    setUserExists(() => true);
+                    existVal = true;
+                    break
                 } else {
-                    userExistsBool = false;
-                    setUserExists(() => false);
+                    existVal = false;
                 }
-            });
-
-            if (!users.length || !userExistsBool) {
-                dispatch(signUp({ id, userName, email, password: hashPassword(password) }));
+            };
+            setUserExists(existVal)
+            if (!existVal) {
                 await addDoc(usersCollection, { id, userName, email, password: hashPassword(password) })
+                dispatch(signUp({ id, userName, email, password: hashPassword(password) }));
                 setErrors(() => "");
                 setEmail(() => "");
                 setUserName(() => "");
@@ -191,7 +184,7 @@ export default function SignUp() {
                                     {
                                         errors?.password &&
                                         <div className="password-errors">
-                                            
+
                                             <div className="password-errors-block">
                                                 {
                                                     Object.entries(errors.password).map((err) => {
@@ -203,7 +196,7 @@ export default function SignUp() {
                                     }
                                 </div>
                             </div>
-                            <input type="submit" value="Sign Up" disabled={!userName || !email || !password || Object.values(errors).join("")} /> 
+                            <input type="submit" value="Sign Up" disabled={!userName || !email || !password || Object.values(errors).join("")} />
                         </form>
                     </div>
                     {/* <div className="wrapper-block">

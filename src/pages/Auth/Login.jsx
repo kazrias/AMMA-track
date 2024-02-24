@@ -15,7 +15,6 @@ export default function Login() {
   const navigate = useNavigate();
   const loggedIn = window.localStorage.getItem("isLoggedIn");
   const [passwordEye, setPasswordEye] = useState(false);
-  console.log('Это работает вечно');
   useEffect(() => {
     if (loggedIn && loggedIn === "ON") {
       navigate("/workspaces");
