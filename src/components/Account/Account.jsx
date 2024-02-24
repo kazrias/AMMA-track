@@ -27,10 +27,13 @@ import {
 
 
 export const Account = forwardRef((props, ref) => {
-  console.log(props, 'props');
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.loggedUser);
+
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [wrongCurrent, setWrongCurrent] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordErrors, setPasswordErrors] = useState({});
@@ -56,16 +59,22 @@ export const Account = forwardRef((props, ref) => {
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
+    if (user.password !== CryptoJS.SHA256(currentPassword).toString(CryptoJS.enc.Hex)) {
+      setWrongCurrent(true);
+      return;
+    }
     const errors = validatePassword(newPassword);
     setPasswordErrors(errors);
 
     if (Object.keys(errors).length === 0 && newPassword === confirmPassword) {
+      await changeAccountData({ password: CryptoJS.SHA256(newPassword).toString(CryptoJS.enc.Hex) });
       dispatch(updatePassword({ userId: user.id, newPassword: CryptoJS.SHA256(newPassword).toString(CryptoJS.enc.Hex) }));
+      const updatedUser = { ...user, password: CryptoJS.SHA256(newPassword).toString(CryptoJS.enc.Hex) };
+      window.localStorage.setItem("loggedUser", JSON.stringify(updatedUser));
       setNewPassword();
       setConfirmPassword("");
-
+      setCurrentPassword("")
       setShowChangePasswordModal(false);
-      await changeAccountData({ password: CryptoJS.SHA256(newPassword).toString(CryptoJS.enc.Hex) });
     } else if (newPassword !== confirmPassword) {
       setPasswordErrors({
         ...errors,
@@ -93,15 +102,16 @@ export const Account = forwardRef((props, ref) => {
   };
 
   const handleDeleteConfirmation = async () => {
-    dispatch(deleteAccount({ userId: user.id }));
-    dispatch(logOut());
-    setShowDeleteModal(false);
     const snapshot = await getDocs(usersCollection);
     for (let userDoc of snapshot.docs.filter(
       (doc) => doc.data().id === user.id
     )) {
       if (userDoc.id) await deleteDoc(doc(db, "users", userDoc.id));
     }
+    dispatch(deleteAccount({ userId: user.id }));
+    dispatch(logOut());
+    setShowDeleteModal(false);
+    localStorage.clear()
     navigate("/");
   };
 
@@ -120,8 +130,20 @@ export const Account = forwardRef((props, ref) => {
                       {error}
                     </p>
                   ))}
+
                 </div>
               )}
+              {
+                wrongCurrent && <p className="error-message">
+                  Password is wrong!
+                </p>
+              }
+              <input
+                type="password"
+                placeholder="Current Password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+              />
               <input
                 type="password"
                 placeholder="New Password"

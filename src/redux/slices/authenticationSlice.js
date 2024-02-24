@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import CryptoJS from "crypto-js";
 
 const initialState = {
@@ -41,10 +41,14 @@ export const authSlice = createSlice({
     },
     updatePassword: (state, action) => {
       const { userId, newPassword } = action.payload;
+      console.log(newPassword);
       const user = state.users.find((u) => u.id === userId);
+      state.loggedUser.password = newPassword;
       if (user) {
-        user.password = CryptoJS.SHA256(newPassword).toString(CryptoJS.enc.Hex);
+        user.password = newPassword;
       }
+      console.log(current(state).loggedUser);
+      console.log(current(state).users);
     },
 
     switchAccount: (state) => {

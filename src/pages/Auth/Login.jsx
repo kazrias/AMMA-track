@@ -15,7 +15,7 @@ export default function Login() {
   const navigate = useNavigate();
   const loggedIn = window.localStorage.getItem("isLoggedIn");
   const [passwordEye, setPasswordEye] = useState(false);
-
+  console.log('Это работает вечно');
   useEffect(() => {
     if (loggedIn && loggedIn === "ON") {
       navigate("/workspaces");
@@ -54,7 +54,7 @@ export default function Login() {
   const handleLoginForm = (e) => {
     e.preventDefault();
 
-    for (const user of users) {
+    for (const user of users) {      
       if (
         user.email === email &&
         user.password === CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex)
