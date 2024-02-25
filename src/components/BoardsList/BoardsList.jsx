@@ -24,8 +24,6 @@ export const BoardsList = () => {
 
   const logged = useSelector(state => state.auth.loggedUser)
   const activeWorkspace = useSelector(state => state.workspaces.workspaces.find(workspace => workspace.active && workspace.user.id === logged.id))
-  console.log(logged, 'loggedUser');
-  console.log(activeWorkspace?.user, 'workspaceUse');
   const boards = useSelector(state => state.boards.boards)
   const boardsToShow = activeWorkspace ? boards.filter(board => board.workspace.id === activeWorkspace.id && logged.id === activeWorkspace.user.id) : []
 

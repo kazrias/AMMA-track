@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 555;
 }
 
 .settings-wrapper {
@@ -20,6 +21,8 @@
   border: 1px solid black;
   gap: 20px;
   position: relative;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 .settings-nav {
@@ -138,16 +141,17 @@ ul.settings-list {
   margin-top: 25px;
 }
 
-.--delete{
+.--delete {
   color: red;
   font-weight: 500;
   font-size: 22px;
 }
-button.btn-delete{
+
+button.btn-delete {
   margin-top: 5px;
 }
 
-button.setting-close{
+button.setting-close {
   position: absolute;
   top: 10px;
   background-color: rgb(217, 139, 139);
@@ -155,10 +159,12 @@ button.setting-close{
   margin: 0px;
   transition: all .3s;
 }
-.setting-close:hover{
+
+.setting-close:hover {
   background-color: rgb(225, 77, 77);
 }
-.setting-close span{
+
+.setting-close span {
   display: block;
   scale: 2;
   rotate: 45deg;
