@@ -9,6 +9,7 @@ import { useSelector} from 'react-redux'
 
 const BoardsPage = () => {
   const activeWorkspaceId = useSelector(state => state.workspaces.workspaces.find(workspace => workspace.active));
+  
   const settings = useSelector(state => state.workspaces.settingsOpened);
   
   return (

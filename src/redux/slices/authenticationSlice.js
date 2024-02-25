@@ -59,13 +59,12 @@ export const authSlice = createSlice({
     },
     updateUsername: (state, action) => {
       const { userId, newUsername } = action.payload;
-      const userIndex = state.users.findIndex((u) => u.id === userId);
-      if (userIndex !== -1) {
-        state.users[userIndex].userName = newUsername;
-        if (state.loggedUser.id === userId) {
-          state.loggedUser.userName = newUsername;
-        }
-      }
+      const userToChange = state.users.find((u) => u.id === userId);
+      if (userToChange?.userName)
+        userToChange.userName = newUsername;
+
+      state.loggedUser.userName = newUsername;
+
     },
 
     deleteAccount: (state, action) => {

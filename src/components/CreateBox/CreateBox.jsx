@@ -17,7 +17,7 @@ import { unsplash } from '../../lib/unsplash'
 import { db } from '../../config/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 
-export const CreateBox = ({ setCreateCount, type, handleBox }) => {
+export const CreateBox = ({  type, handleBox }) => {
   const [title, setTitle] = useState('');
   const [images, setImages] = useState([])
   const selectedWorkspaceImg = useSelector((state) => state.workspaces.selectedImg.thumb)

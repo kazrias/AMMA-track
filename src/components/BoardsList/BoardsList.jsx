@@ -21,11 +21,15 @@ import { collection, getDocs } from 'firebase/firestore'
 
 export const BoardsList = () => {
   const dispatch = useDispatch()
-  const activeWorkspace = useSelector(state => state.workspaces.workspaces.find(workspace => workspace.active))
-  const boards = useSelector(state => state.boards.boards)
-  const boardsToShow = boards.filter(board => board.workspace.id === activeWorkspace.id)
 
-  const limit = activeWorkspace.status === 'Free';
+  const logged = useSelector(state => state.auth.loggedUser)
+  const activeWorkspace = useSelector(state => state.workspaces.workspaces.find(workspace => workspace.active && workspace.user.id === logged.id))
+  console.log(logged, 'loggedUser');
+  console.log(activeWorkspace?.user, 'workspaceUse');
+  const boards = useSelector(state => state.boards.boards)
+  const boardsToShow = activeWorkspace ? boards.filter(board => board.workspace.id === activeWorkspace.id && logged.id === activeWorkspace.user.id) : []
+
+  const limit = activeWorkspace?.status === 'Free';
   const create = useSelector(state => state.creation.boardCreationBox)
   const [showError, setShowError] = useState(false)
   useEffect(() => {
@@ -37,7 +41,7 @@ export const BoardsList = () => {
     if (!boards.length) fetchBoards()
   }, [boards.length, dispatch])
   useEffect(() => {
-    if (activeWorkspace.count === 7)
+    if (activeWorkspace?.count === 7)
       dispatch(changeCount({ count: boardsToShow.length, id: activeWorkspace.id }))
   }, [boardsToShow.length])
   const onClickCreate = () => {
@@ -51,31 +55,33 @@ export const BoardsList = () => {
     }
   }
   return (
-    <div className="boardsList">
-      <div className="workspace-box">
-        <img src={activeWorkspace.img.thumb} alt="workspace img" />
-        <div className="workspace-box__text-info">
-          <p>{activeWorkspace.title}</p>
-          <p className='workspace-status'>
-            <img className={`${activeWorkspace.status === 'Pro' ? 'workspace-status__img--pro' : 'workspace-status__img--free'} workspace-status__img`} src={activeWorkspace.status === 'Free' ? freeCard : proCard} alt="" />
-            <span>{activeWorkspace.status}</span>
-          </p>
-        </div>
-      </div>
-      <div className='boardsList-text'>
-        <img src={person} alt="person" />
-        <p>Your boards</p>
-      </div>
-      <div className="boardsList-items">
-        {boardsToShow.map(item => <BoardItem key={item.id} {...item} />)}
-        <div className="boardsList-items__create-wrapper">
-          <div onClick={onClickCreate} className='boardsList-items__create'>
-            <p>Create new board</p>
-            {limit && <p className='boardsList-items__create--limit'>{showError ? <p className='boardList-items__create--error'>Activate Pro status in settings if u need more</p> : `${activeWorkspace.count} remaining`}</p>}
+    <>
+      {activeWorkspace && <div className="boardsList">
+        <div className="workspace-box">
+          <img src={activeWorkspace.img.thumb} alt="workspace img" />
+          <div className="workspace-box__text-info">
+            <p>{activeWorkspace.title}</p>
+            <p className='workspace-status'>
+              <img className={`${activeWorkspace.status === 'Pro' ? 'workspace-status__img--pro' : 'workspace-status__img--free'} workspace-status__img`} src={activeWorkspace.status === 'Free' ? freeCard : proCard} alt="" />
+              <span>{activeWorkspace.status}</span>
+            </p>
           </div>
-          {create && <CreateBox handleBox={boardCreationBoxHandle} type={'board'} />}
         </div>
-      </div>
-    </div>
+        <div className='boardsList-text'>
+          <img src={person} alt="person" />
+          <p>Your boards</p>
+        </div>
+        <div className="boardsList-items">
+          {boardsToShow.map(item => <BoardItem key={item.id} {...item} />)}
+          <div className="boardsList-items__create-wrapper">
+            <div onClick={onClickCreate} className='boardsList-items__create'>
+              <p>Create new board</p>
+              {limit && <p className='boardsList-items__create--limit'>{showError ? <p className='boardList-items__create--error'>Activate Pro status in settings if u need more</p> : `${activeWorkspace.count} remaining`}</p>}
+            </div>
+            {create && <CreateBox handleBox={boardCreationBoxHandle} type={'board'} />}
+          </div>
+        </div>
+      </div>}
+    </>
   )
 }

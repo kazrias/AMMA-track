@@ -51,10 +51,10 @@ export const SettingsContent = ({ type }) => {
   const onDeleteWorkspace = async (e) => {
     e.preventDefault()
     if (pass === loggedUs.password) {
+      const snapshot = await getDocs(workspacesCollection)
       dispatch(deleteWorkspace({ id: activeWorkspace.id }))
       dispatch(closeSettings())
       setPassIsCorrect(true);
-      const snapshot = await getDocs(workspacesCollection)
       for (let workspaceDoc of snapshot.docs.filter(doc => doc.data().id === activeWorkspace.id)) {
         if (workspaceDoc.id) {
           await deleteDoc(doc(db, 'workspaces', workspaceDoc.id))

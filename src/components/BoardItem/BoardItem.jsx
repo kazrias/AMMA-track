@@ -19,9 +19,9 @@ export const BoardItem = ({ id, img, title }) => {
   const boardsCollection = collection(db, 'boards')
   const activeWorkspace = useSelector(state => state.workspaces.workspaces.find(workspace => workspace.active))
   const onDeleteBoard = async () => {
+    const snapshot = await getDocs(boardsCollection)
     dispatch(deleteBoard({ id }))
     dispatch(remainingInc({ id: activeWorkspace.id }))
-    const snapshot = await getDocs(boardsCollection)
     for (let boardDoc of snapshot.docs.filter(doc => doc.data().id === id)) {
       if (boardDoc.id) {
         await deleteDoc(doc(db, 'boards', boardDoc.id))

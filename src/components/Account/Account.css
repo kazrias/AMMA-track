@@ -2,7 +2,7 @@
   transition: all .3s;
   position: absolute;
   top: 20px;
-  right: 66px;
+  left: -83px;
   display: flex;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.544);
@@ -17,7 +17,7 @@
 .account-container button {
   text-align: left;
   font-size: 13px;
-  padding:4px 8px;
+  padding: 4px 8px;
   border: 1px solid rgba(209, 209, 209, 0.185);
   transition: all .3s;
   margin-top: -1px;
@@ -222,13 +222,13 @@
   font-family: "Roboto", sans-serif;
 }
 
-.form__modal-btns{
+.form__modal-btns {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.form__modal-btns--delete{
+.form__modal-btns--delete {
   justify-content: center;
   gap: 15px;
 }
