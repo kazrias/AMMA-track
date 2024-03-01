@@ -111,7 +111,7 @@ export const SettingsContent = ({ type }) => {
               return (
                 <div className="settings-title">
                   <p className="settings-title__text">Current title of workspace: <strong>{activeWorkspace?.title}</strong></p>
-                  <p className="settings-title__text">Want to change it? Write new title below and save.</p>
+                  <p className="settings-title__text">Want to change it? <br /> Write new title below and save.</p>
                   <form onSubmit={(e) => titleChangeSubmit(e)}>
                     <label className="setting-title__input">New Title
                       <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
