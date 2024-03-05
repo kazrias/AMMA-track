@@ -1,1 +1,1 @@
-export const WORKSPACE_PRICE = '10$';
+export const WORKSPACE_PRICE = '5$';

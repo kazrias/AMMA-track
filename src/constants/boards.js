@@ -1,1 +1,1 @@
-export const MAX_COUNT=7
+export const MAX_COUNT=7;
