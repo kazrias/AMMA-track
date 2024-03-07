@@ -124,7 +124,7 @@ export const SettingsContent = ({ type }) => {
             case 'icon': {
               return (
                 <div className="settings-icon">
-                  <p className="settings-title__text">Don't like workspace's icon? Just choose new one!</p>
+                  <p className="settings-title__text settings-title__text--icon">Don't like workspace's icon? Just choose new one!</p>
                   <p className="settings-title__text">Here is some variants.</p>
                   <div className="icons-box">
                     {

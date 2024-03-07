@@ -139,8 +139,34 @@
 @media only screen and (max-width:750px) {
   .create-box.board {
     position: fixed;
-    top:50%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media only screen and (max-width:630px) {
+  .create-box.create-box.workspace {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@media only screen and (max-width:500px) {
+  .create-box.create-box.workspace {
+    position: fixed;
+    top: 50%;
+    left: 30px;
+    transform: translate(0%, -50%);
+  }
+}
+
+@media only screen and (max-width:420px) {
+  .create-box__images {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 70px);
+    gap: 5px;
   }
 }

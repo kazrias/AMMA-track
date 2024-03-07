@@ -50,7 +50,7 @@
   font-size: 20px;
   margin-top: 9px;
   margin-left: 5px;
-  font-family: "Poppins",sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: rgba(0, 0, 0, 0.488);
 }
 
@@ -98,4 +98,16 @@
 .boardItem__editBtn:hover .boardItem__btnWrapper {
   visibility: visible;
   opacity: 1;
+}
+
+@media only screen and (max-width:460px) {
+  .boardsList-items{
+    align-items: center;
+    justify-content: center;
+  }
+  .boardItem {
+    width: 265px;
+    height: 135px;
+
+  }
 }

@@ -184,3 +184,57 @@ button.setting-close {
   scale: 2;
   rotate: 45deg;
 }
+
+@media only screen and (max-width:630px) {
+  .settings-container {
+    font-size: 14px;
+  }
+
+  .settings-title__text:first-child {
+    padding-right: 30px;
+  }
+
+  .settings-title__text--icon {
+    max-width: 320px;
+  }
+}
+
+@media only screen and (max-width:580px) {
+  .icons-box {
+    grid-template-columns: repeat(2, 120px);
+    grid-template-rows: repeat(3, 80px);
+    justify-content: center;
+  }
+
+  .icons-box__wrapper {
+    max-height: 80px;
+  }
+
+  .settings-content {
+    overflow-y: auto;
+    width: 100%;
+  }
+
+  .settings-wrapper {
+    /* width: auto; */
+  }
+}
+
+@media only screen and (max-width:465px) {
+  .icons-box {
+    grid-template-columns: repeat(1, 120px);
+    grid-template-rows: repeat(3, 80px);
+    justify-content: center;
+  }
+
+  .settings-list__item {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width:380px) {
+  .setting-title__input input {
+    max-width: 170px;
+  }
+
+}

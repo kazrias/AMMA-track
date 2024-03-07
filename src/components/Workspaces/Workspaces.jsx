@@ -57,14 +57,15 @@ export const Workspaces = ({ workspacesClicked, setWorkspacesClicked }) => {
   useEffect(() => {
 
     const handleClickOutside = (event) => {
-      console.log(event.target);
+
       if (workspacesRef.current && !workspacesRef.current.contains(event.target) && !event.target.classList.contains('Workspaces-button ') &&
         !event.target.closest('.Workspaces-button') && !event.target.classList.contains('settings-container') &&
         !event.target.closest('.settings-container')) {
+        dispatch(workspaceCreationBoxHandle({ val: false }));
         setWorkspacesClicked(false)
       }
     };
-    console.log(workspacesClicked);
+
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
