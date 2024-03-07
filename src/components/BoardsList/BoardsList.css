@@ -47,6 +47,7 @@
   flex-wrap: wrap;
   gap: 15px;
   position: relative;
+  padding-bottom: 50px;
 }
 
 .boardsList-items__create-wrapper {
