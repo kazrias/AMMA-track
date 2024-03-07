@@ -100,11 +100,18 @@
   opacity: 1;
 }
 
+@media (hover:none) {
+  .boardItem__editBtn {
+    opacity: 1;
+  }
+}
+
 @media only screen and (max-width:460px) {
-  .boardsList-items{
+  .boardsList-items {
     align-items: center;
     justify-content: center;
   }
+
   .boardItem {
     width: 265px;
     height: 135px;
