@@ -23,7 +23,7 @@
 
 .create-box.board {
   top: -100%;
-  left: 103%;
+  left: -129%;
 }
 
 .create-box__type {
@@ -132,5 +132,15 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+
+@media only screen and (max-width:750px) {
+  .create-box.board {
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
   }
 }
